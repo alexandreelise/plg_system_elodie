@@ -100,7 +100,6 @@ class PlgSystemElodie extends CMSPlugin
 		?string         $givenToken = null
 	)
 	{
-		
 		header('Content-Type: application/vnd.api+json; charset=utf-8');
 		try
 		{
@@ -220,8 +219,16 @@ class PlgSystemElodie extends CMSPlugin
 			}
 			foreach ($assocResponse['data'] as $index => $assocItem)
 			{
+				if (empty($output[$index]['attributes']))
+				{
+					unset($assocResponse['data'][$index]);
+					continue;
+				}
 				$assocResponse['data'][$index]['attributes'] = $output[$index]['attributes'];
+				
 			}
+			
+			
 			$outcome = $assocResponse;
 		}
 		catch (Throwable $throwable)
