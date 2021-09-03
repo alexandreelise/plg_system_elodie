@@ -1,0 +1,14 @@
+{
+  "data": [
+    "users",
+    "fields/users",
+    "fields/groups/users",
+    "messages",
+    "content/articles",
+    "content/categories",
+    "fields/content/articles",
+    "fields/content/categories",
+    "fields/groups/content/articles",
+    "fields/groups/content/categories"
+  ]
+}
