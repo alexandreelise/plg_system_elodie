@@ -4,6 +4,7 @@
 !/README.md
 !/composer.json
 !/phpdoc.xml
+!/build
 
 composer.lock
 /vendor/

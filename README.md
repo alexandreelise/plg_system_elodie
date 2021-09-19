@@ -8,9 +8,11 @@ Add sparse fieldset as JSONAPI v1.0 Specs shows it to Joomla! 4 using only one s
 
 > English: 
 
-1. Download and install the plugin on your Joomla! 4 website (make a backup first just in case)
-2. Make GET request call to any  Joomla! 4 Web Services GET endpoint using any HTTP Client it should work. For example (Curl, Postman, Guzzle, Joomla! Http Client, etc...) with an additional query string.
-3. Enjoy. Give your feedback on potential improvement and issues
+1. Go to the build folder of this repository
+2. Download and install the latest version of the plugin on your Joomla! 4 website (make a backup first just in case)
+3. Create a Joomla Api Token from the admin of your Joomla! 4 website
+4. Make GET request call to any  Joomla! 4 Web Services GET endpoint using any HTTP Client it should work. For example (Curl, Postman, Guzzle, Joomla! Http Client, etc...) with an additional query string.
+5. Enjoy. Give your feedback on potential improvement and issues
 
 For users endpoint:
 
@@ -46,9 +48,11 @@ curl -X GET -H "X-Joomla-Token: YOUR-TOKEN" -H "Accept: application/vnd.api+json
 
 > Français:
 
-1. Téléchargez et installer le plugin sur votre site Joomla! 4 (faite une sauvegarde avant juste au cas où)
-2. Appelez avec une requete HTTP GET n'importe quel point d'entrée des Web Services Joomla! 4 en utilisant n'importe quel client HTTP de votre choix. Par exemple (Curl, Postman, Guzzle, Joomla! Http Client, etc...) avec un paramètre en plus dans l'url
-3. Donnez vos impressions, retours sur l'utilisation, amelioration potientielle et éventuelles erreurs.
+1. Aller dans le dossier build de ce dépot
+2. Téléchargez et installer la derniere version de ce plugin sur votre site Joomla! 4 (faite une sauvegarde avant juste au cas où
+3. Créez un Jeton Api Joomla dans la partie admin de Joomla! 4
+4. Appelez avec une requete HTTP GET n'importe quel point d'entrée des Web Services Joomla! 4 en utilisant n'importe quel client HTTP de votre choix. Par exemple (Curl, Postman, Guzzle, Joomla! Http Client, etc...) avec un paramètre en plus dans l'url
+5. Donnez vos impressions, retours sur l'utilisation, amelioration potientielle et éventuelles erreurs.
 
 Pour le point d'entrée des utilisateurs:
 
