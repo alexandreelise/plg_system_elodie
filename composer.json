@@ -1,10 +1,12 @@
 {
+  "name": "alexandreelise/plg_system_elodie",
+  "description": "Add sparse fieldset as JSONAPI v1.0 Specs shows it to Joomla! 4 using only one system plugin",
   "license": "GPL-2.0-or-later",
   "authors": [
     {
       "name": "Alexandre ELISÉ",
-      "email": "contact@alexandre-elise.fr",
-      "homepage": "https://alexandre-elise.fr"
+      "email": "contact@alexapi.cloud",
+      "homepage": "https://alexapi.cloud"
     }
   ],
   "config": {
@@ -17,7 +19,7 @@
     "ext-json": "*"
   },
   "require-dev": {
-    "roave/security-advisories": "dev-master",
-    "phpunit/phpunit": "9.2.6"
+    "phpunit/phpunit": "9.2.6",
+    "roave/security-advisories": "dev-master"
   }
 }

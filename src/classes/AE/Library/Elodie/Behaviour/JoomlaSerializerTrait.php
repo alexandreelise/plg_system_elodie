@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 /**
- * SerializerAwareTrait
+ * JoomlaSerializerTrait
  *
- * @version       0.1.0
- * @package       SerializerAwareTrait
+ * @version       1.0.0
+ * @package       JoomlaSerializerTrait
  * @author        Alexandre ELISÉ <contact@alexapi.cloud>
  * @copyright (c) 2009-2021 . Alexandre ELISÉ . Tous droits réservés.
  * @license       GPL-2.0-and-later GNU General Public License v2.0 or later
@@ -12,6 +12,7 @@ declare(strict_types=1);
  */
 
 namespace AE\Library\Elodie\Behaviour;
+
 use Joomla\CMS\Factory;
 use Joomla\CMS\Object\CMSObject;
 use Joomla\CMS\Serializer\Events\OnGetApiAttributes;
@@ -25,9 +26,12 @@ use function sprintf;
 defined('_JEXEC') or die;
 
 /**
+ *
+ * @note        Code from the core copied into this trait
+ * to make it easier to use in this library
  * @package     AE\Library\Elodie\Behaviour
  *
- * @since       0.1.0
+ * @since       1.0.0
  */
 trait JoomlaSerializerTrait
 {

@@ -7,7 +7,7 @@
 	<authorUrl>https://alexapi.cloud</authorUrl>
 	<copyright>Copyright(c) 2009 - 2021 Alexandre ELISÉ. All rights reserved</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
-	<version>1.0.0-rc1</version>
+	<version>1.0.0</version>
 	<description>PLG_SYSTEM_ELODIE_XML_DESCRIPTION</description>
 
 	<!-- Scripts to run on installation -->

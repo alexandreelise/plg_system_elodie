@@ -3,7 +3,7 @@ declare(strict_types=1);
 /**
  * Alex Api Serializer
  *
- * @version       0.1.0
+ * @version       1.0.0
  * @package       AlexApiSerializer
  * @author        Alexandre ELISÉ <contact@alexapi.cloud>
  * @copyright (c) 2009-2021 . Alexandre ELISÉ . Tous droits réservés.
@@ -16,7 +16,6 @@ namespace AE\Library\Elodie\Serializer;
 use AE\Library\Elodie\Behaviour\JoomlaSerializerTrait;
 use AE\Library\Elodie\Helper\CommonHelper;
 use Joomla\CMS\Factory;
-use Joomla\CMS\Filter\OutputFilter;
 use Tobscure\JsonApi\AbstractSerializer;
 
 defined('_JEXEC') or die;
@@ -41,48 +40,38 @@ class AlexApiSerializer extends AbstractSerializer
 	}
 
 	/**
-	 * @var array
-	 * @since version
-	 */
-	private $sparseFieldsetQueryString;
-	/**
-	 * @var array
-	 * @since version
-	 */
-	private $filterQueryString;
-
-	/**
 	 * Constructor
 	 *
 	 * @param   string  $type
 	 */
-	public function __construct(
-		string $type
-	)
+	public function __construct(string $type)
 	{
-		//NOTE: not clean to put input there but I wanted this class to have the same
-		// signature than the parent class so I didn't put extra parameters that would be
-		// convenient to inject the input rather than doing it in this constructor
-		$input                           = Factory::getApplication()->input;
-		$this->sparseFieldsetQueryString = $input->get('fields', [], 'ARRAY');
-		$this->filterQueryString         = $input->get('filter', [], 'ARRAY');
 		$this->type                      = $type;
 	}
 
-
 	/**
-	 * @inheritDoc
+	 * Custom version of getAttributes which allows us
+	 * to take query string fields into account when retrieving results
+	 * of jsonapi document
+	 *
+	 * @param   mixed       $model
+	 * @param   array|null  $fields
+	 *
+	 * @return array
+	 *
+	 * @throws \Exception
+	 * @since 1.0.0
 	 */
 	public function getAttributes($model, array $fields = null)
 	{
-		$chosenFields                       = array_values(array_filter(explode(',', ($this->sparseFieldsetQueryString[$this->type]) ?? '')));
-		$baseAttributesWithChosenFieldsOnly = $this->baseTraitGetAttributes($model, $chosenFields);
-		$filters                            = $this->filterQueryString;
+		//NOTE: Not clean but works for now
+		//Fields chosen by user when typing the url of the webservice call
+	    //eg: https://example.org/api/index.php/v1/users?fields[users]=id,name
+		$sparseFieldsetQueryString = Factory::getApplication()->input->get('fields', [], 'ARRAY');
 
-		return CommonHelper::filterAttributes(
-			$baseAttributesWithChosenFieldsOnly,
-			$filters
-		);
+		// extract the fields as array rather than comma separated values
+		$chosenFields                       = array_values(array_filter(explode(',', ($sparseFieldsetQueryString[$this->type]) ?? '')));
+		return $this->baseTraitGetAttributes($model, empty($chosenFields) ? $fields : $chosenFields);
 	}
 
 }

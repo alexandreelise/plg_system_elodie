@@ -28,7 +28,7 @@ use Tobscure\JsonApi\Resource;
  * Elodie plugin.
  *
  * @package   Elodie
- * @since     0.1.0
+ * @since     1.0.0
  */
 class PlgSystemElodie extends CMSPlugin implements SubscriberInterface
 {
@@ -36,26 +36,26 @@ class PlgSystemElodie extends CMSPlugin implements SubscriberInterface
 	 * Application object
 	 *
 	 * @var    \Joomla\CMS\Application\CMSApplicationInterface|null $app
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 */
 	protected $app;
-	
+
 	/**
 	 * Database object
 	 *
 	 * @var    \Joomla\Database\DatabaseDriver|null $db
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 */
 	protected $db;
-	
+
 	/**
 	 * Affects constructor behavior. If true, language files will be loaded automatically.
 	 *
 	 * @var    boolean $autoloadLanguage
-	 * @since  0.1.0
+	 * @since  1.0.0
 	 */
 	protected $autoloadLanguage = true;
-	
+
 	/**
 	 *
 	 * @return string[]
@@ -68,7 +68,7 @@ class PlgSystemElodie extends CMSPlugin implements SubscriberInterface
 			'onAfterDispatch' => 'onAfterDispatch',
 		];
 	}
-	
+
 	/**
 	 * Constructor
 	 *
@@ -79,41 +79,44 @@ class PlgSystemElodie extends CMSPlugin implements SubscriberInterface
 	{
 		parent::__construct($subject, $config);
 		JLoader::registerNamespace('\\AE\\Library\\Elodie\\', __DIR__ . '/classes/AE/Library/Elodie', false, false, 'psr4');
-		
+
 	}
-	
+
 	public function onAfterDispatch()
 	{
 		$this->processJsonApiDocument();
 	}
-	
-	
+
+
 	/**
 	 * Do some processing on the jsonapidocument
 	 * without altering the core code
 	 *
-	 * @since 0.1.0
+	 * @since 1.0.0
 	 */
 	private function processJsonApiDocument()
 	{
+		//not webservice application ? stop here.
 		if (!$this->app->isClient('api'))
 		{
 			return;
 		}
-		
+
 		$doc = Factory::getDocument();
-		
+
+		// not jsonapi document ? stop here.
 		if ($doc->getType() !== 'jsonapi')
 		{
 			return;
 		}
-		
+
 		$uri                           = Uri::getInstance();
 		$currentWebserviceResourceType = CommonHelper::getWebserviceResourceType($uri);
 		$jinput                        = $this->app->input;
 		$currentWebserviceResourceId   = $jinput->getUint('id', 0);
 		$currentHttpVerb               = strtolower($jinput->getMethod() ?? 'get');
-		
+
+		//not get request? stop here.
 		if ($currentHttpVerb !== 'get')
 		{
 			return;
@@ -121,11 +124,11 @@ class PlgSystemElodie extends CMSPlugin implements SubscriberInterface
 		$isCollection = empty($currentWebserviceResourceId);
 		$docArray     = $doc->toArray();
 		$serializer   = new AlexApiSerializer($currentWebserviceResourceType);
-		
+
 		$element = $isCollection
 			? new Collection(ArrayHelper::toObject(array_column($docArray['data'], 'attributes'), CMSObject::class), $serializer)
 			: new Resource(ArrayHelper::toObject($docArray['data']['attributes'], CMSObject::class), $serializer);
-		
+
 		$doc->setData($element);
 	}
 }
