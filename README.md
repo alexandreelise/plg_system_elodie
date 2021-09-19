@@ -1,5 +1,5 @@
 # plg_system_elodie
-Acts like a middleware or proxy to add functionality by modifiying the request and response of Joomla! 4 Web Service call
+Cleanly overloads the core JoomlaSerializer to add functionality to it such as sparse fieldset and fuzzy matching filters.
 
 --------------------------------------------
 ## INFOS

@@ -3,7 +3,7 @@
 .DEFAULT_GOAL=help
 APP_CURRENT_DIR=$$(pwd)
 APP_CURRENT_DATETIME=$$(date +%Y%m%d%H%M%S)
-APP_BUILD_DIR=$(HOME)/.joomla-extensions/build
+APP_BUILD_DIR=$(HOME)/.joomla4-extensions/mralexandrelise/build
 APP_PHP=/usr/bin/php
 APP_COMPOSER=$(HOME)/bin/composer
 ifdef APP_PHP_VERSION

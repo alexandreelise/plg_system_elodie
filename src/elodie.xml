@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="plugin" version="3.10" group="system" method="upgrade">
+<extension type="plugin" version="4.0" group="system" method="upgrade">
 	<name>PLG_SYSTEM_ELODIE</name>
 	<creationDate>2021-09-02</creationDate>
 	<author>Alexandre ELISÉ</author>
@@ -7,7 +7,7 @@
 	<authorUrl>https://alexapi.cloud</authorUrl>
 	<copyright>Copyright(c) 2009 - 2021 Alexandre ELISÉ. All rights reserved</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
-	<version>0.1.0</version>
+	<version>1.0.0-rc1</version>
 	<description>PLG_SYSTEM_ELODIE_XML_DESCRIPTION</description>
 
 	<!-- Scripts to run on installation -->
@@ -26,35 +26,9 @@
 	<files>
 		<filename plugin="elodie">elodie.php</filename>
 		<filename>LICENSE</filename>
+		<folder>classes</folder>
 		<folder>language</folder>
 		<folder>media</folder>
 	</files>
 
-	<!-- Config parameter -->
-	<config>
-		<fields name="params">
-			<fieldset name="basic">
-				<field
-						name="baseUrl"
-						type="text"
-						default="https://j4x.alexapi.cloud"
-						hint="https://j40.example.org"
-						label="PLG_SYSTEM_ELODIE_BASE_URL_LABEL"
-						description="PLG_SYSTEM_ELODIE_BASE_URL_DESCRIPTION"
-				/>
-				<field
-						name="token"
-						type="text"
-						default="c2hhMjU2OjQwMjplOWNhNzk0OWIyMmJhMzBjNmY4YzRhNjI5ZThkZTY3YmE0YzUzYmQzYTcyMDk3NGEwN2E3ZDY5MmZiNGQxYzA2"
-						label="PLG_SYSTEM_ELODIE_TOKEN_LABEL"
-						description="PLG_SYSTEM_ELODIE_TOKEN_DESCRIPTION"
-				/>
-			</fieldset>
-		</fields>
-	</config>
-
-	<!-- Update servers -->
-	<updateservers>
-		<server type="extension" priority="1" name="elodie">https://www.example.com/plg_elodie.xml</server>
-	</updateservers>
 </extension>
